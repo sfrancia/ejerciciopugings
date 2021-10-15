@@ -1,0 +1,7 @@
+{
+  "name": "ciclos",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

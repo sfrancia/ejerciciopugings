@@ -15,10 +15,16 @@ import { HTTP } from '@ionic-native/http/ngx';
 })
 
 export class HomePage {
+public pokemons:any;
 
-  constructor(private iab: InAppBrowser,private emailComposer: EmailComposer,private camera: Camera,private callNumber: CallNumber,private geolocation: Geolocation,private socialSharing: SocialSharing,private http: HTTP) {}
+  constructor(private iab: InAppBrowser,private emailComposer: EmailComposer,private camera: Camera,private callNumber: CallNumber,private geolocation: Geolocation,private socialSharing: SocialSharing,
+              private http: HTTP) {
+      this.llamarHttp();
+    }
 
-  /**
+
+
+   /**
    * abrir
    */
   public abrir() {
@@ -104,12 +110,14 @@ this.socialSharing.share(null,null,null,"algo ").then(() => {
 
 
 public llamarHttp(){
-  this.http.get('http://ionic.io', {}, {})
+  this.http.get('https://pokeapi.co/api/v2/pokemon/ditto', {}, {})
   .then(data => {
-
-    console.log(data.status);
-    console.log(data.data); // data received by server
-    console.log(data.headers);
+    this.pokemons = JSON.parse(data.data);
+  //  console.log(this.pokemons.abilities[0].ability.name);
+   // console.log(this.pokemons.abilities[0].ability);
+    console.log(this.pokemons.abilities);
+    //console.log(data.data); // data received by server
+    //console.log(data.headers);
 
   })
   .catch(error => {
@@ -120,7 +128,9 @@ public llamarHttp(){
 
   });
 
+
   
+
 }
 
 
